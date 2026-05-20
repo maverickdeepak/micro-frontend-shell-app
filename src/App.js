@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 
-const CartApp = lazy(() => import("cartApp/CartPageBROKEN"));
+const CartApp = lazy(() => import("cartApp/CartPage"));
 const ProductApp = () => {
   useEffect(() => {
     import("productApp/ProductElement");
