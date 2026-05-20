@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
-const CartApp = lazy(() => import("cartApp/CartPageBROKEN"));
+const CartApp = lazy(() => import("cartApp/CartPage"));
 const ProductPage = () => {
   useEffect(() => {
     import("productApp/ProductElement");
@@ -13,10 +14,17 @@ const App = () => {
   return (
     <div>
       <h1>Shell App</h1>
-      <Suspense fallback={<div>Loading Cart Page...</div>}>
-        <CartApp />
-      </Suspense>
-      <ProductPage />
+      <ErrorBoundary name="Cart App">
+        <Suspense fallback={<div>Loading cart...</div>}>
+          <CartPage />
+        </Suspense>
+      </ErrorBoundary>
+
+      <ErrorBoundary name="Product App">
+        <Suspense fallback={<div>Loading product...</div>}>
+          <ProductPage />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
