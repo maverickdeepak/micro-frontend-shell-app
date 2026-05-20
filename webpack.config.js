@@ -1,12 +1,18 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
+// load .env.production if NODE_ENV is production else load .env
+const env = dotenv.config({
+  path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
+}).parsed;
+
 module.exports = {
   mode: "development",
   entry: "./src/index",
 
   output: {
-    publicPath: "auto",
+    publicPath: env.PUBLIC_PATH,
+    clean: true,
   },
 
   devServer: {
@@ -48,10 +54,8 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "shell",
       remotes: {
-        cartApp:
-          "cartApp@https://d1jdjsmwpwk5wc.cloudfront.net/v1.0.0/remoteEntry.js",
-        productApp:
-          "productApp@https://d32mpbk2wjq13i.cloudfront.net/v1.0.0/remoteEntry.js",
+        cartApp: env.CART_REMOTE,
+        productApp: env.PRODUCT_REMOTE,
       },
       shared: {
         react: { singleton: true, eager: true },
