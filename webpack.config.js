@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-
+const dotenv = require("dotenv");
 // load .env.production if NODE_ENV is production else load .env
 const env = dotenv.config({
   path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
