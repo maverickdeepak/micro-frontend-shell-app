@@ -48,9 +48,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "shell",
       remotes: {
-        cartApp: "cartApp@https://d1jdjsmwpwk5wc.cloudfront.net/remoteEntry.js",
+        cartApp:
+          "cartApp@https://d1jdjsmwpwk5wc.cloudfront.net/v1.0.0/remoteEntry.js",
         productApp:
-          "productApp@https://d32mpbk2wjq13i.cloudfront.net/remoteEntry.js",
+          "productApp@https://d32mpbk2wjq13i.cloudfront.net/v1.0.0/remoteEntry.js",
       },
       shared: {
         react: { singleton: true, eager: true },
