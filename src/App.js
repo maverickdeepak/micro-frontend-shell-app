@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect } from "react";
 
-const CartApp = lazy(() => import("cartApp/CartPage"));
+const CartApp = lazy(() => import("cartApp/CartPageBROKEN"));
 const ProductPage = () => {
   useEffect(() => {
     import("productApp/ProductElement");
